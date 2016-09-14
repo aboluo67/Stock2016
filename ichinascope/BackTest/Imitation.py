@@ -16,7 +16,7 @@ conn = MongoClient('localhost',27017)
 #---------------------此处修改参数---------------------------
 
 db = conn.db.data2015
-start = '2015-01-05'
+start = '2015-02-02'
 span = 20
 data = []
 datalist = []
@@ -47,15 +47,17 @@ for ticki in tick.tick:
     if data != []:
         try:
             for i in range(len(data)):
+                # print ''
+                # print data[i]['inc'],data[i+1]['inc']
                 if data[i]['inc'] > 8:
-                    if data[i+1]['close']<-8:
+                    if data[i+1]['inc']<-8:
                         count += 1
                         print ''
                         print 'No.', count
                         print 'inc:', data[i+2]['inc']
                         print data[i]['tick'],data[i]['dt']
                         print ('----------------')
-        except:print EOFError
+        except:pass
     del data[:]
     print '\r','进度 :',tick.tick.index(ticki),'/',ticklen,
     sys.stdout.flush()

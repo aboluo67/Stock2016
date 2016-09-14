@@ -1,5 +1,3 @@
-
-
 # coding=utf8
 import sys
 import time
@@ -47,7 +45,8 @@ header = {
     "token": token,
 }
 
-url = "http://api.ichinascope.com/api/stock/summary?code=601010"
+
+url = "http://api.ichinascope.com/api/stock/search?key=*&limit=3100"
 req = http.Request(url, headers=header)
 data = http.urlopen(req).read()
 if isinstance(data, bytes):
@@ -56,7 +55,9 @@ else:
     result = json.loads(data)
 try:
     conn = MongoClient('localhost', 27017)
-    conn.db.test.insert(result['message'])
+    conn.db.tick.insert(result['message'])
     conn.close()
-except:pass
+except:
+    pass
+
 
