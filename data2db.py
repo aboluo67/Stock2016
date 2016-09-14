@@ -48,7 +48,7 @@ header = {
 for i in tick.tick:
     print ''
     print i
-    url = "http://api.ichinascope.com/api/hq/stock/price/daily?code="+i+"&adjusted=f&from=2009-01-01&to=2009-12-31"
+    url = "http://api.ichinascope.com/api/hq/stock/price/daily?code="+i+"&adjusted=f&from=2016-09-13&to=2016-09-14"
     req = http.Request(url, headers=header)
     data = http.urlopen(req).read()
     if isinstance(data, bytes):
@@ -57,7 +57,7 @@ for i in tick.tick:
         result = json.loads(data)
     try:
         conn = MongoClient('localhost', 27017)
-        conn.db.data2009.insert(result['message'])
+        conn.db.data2016.insert(result['message'])
         conn.close()
     except:pass
     print '\r','进度 :', tick.tick.index(i), '/',ticklen,
