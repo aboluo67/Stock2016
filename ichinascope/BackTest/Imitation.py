@@ -8,16 +8,16 @@ import os
 import time
 import sys
 import tick
-import schedule2015 as schedule
+import schedule2016 as schedule
 from pymongo import MongoClient
 conn = MongoClient('localhost',27017)
 
 #----------------------------------------------------------
 #---------------------此处修改参数---------------------------
 
-db = conn.db.data2015
-start = '2015-02-02'
-span = 20
+db = conn.db.data2016
+start = '2016-09-01'
+span = 14
 data = []
 datalist = []
 
