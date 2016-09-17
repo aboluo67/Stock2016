@@ -48,7 +48,7 @@ header = {
 for i in tick.tick:
     print ''
     print i
-    url = "http://api.ichinascope.com/api/hq/stock/price/daily?code="+i+"&adjusted=f&from=2016-09-13&to=2016-09-14"
+    url = "http://api.ichinascope.com/api/hq/stock/price/daily?code="+i+"&adjusted=f&from=2016-09-14&to=2016-09-15"
     req = http.Request(url, headers=header)
     data = http.urlopen(req).read()
     if isinstance(data, bytes):
