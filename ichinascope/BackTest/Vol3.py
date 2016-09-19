@@ -16,7 +16,7 @@ conn = MongoClient('localhost',27017)
 #---------------------此处修改参数---------------------------
 
 db = conn.db.data2016
-start = '2016-09-08'
+start = '2016-09-09'
 span = 5
 data = []
 datalist = []
@@ -50,6 +50,7 @@ for ticki in tick.tick:
                 # print ''
                 # print data[i]['inc'],data[i+1]['inc']
                 if (data[i+1]['vol']/data[i]['vol'])>3:
+                    if (data[i+1]['high']-data[i+1]['low'])/abs(data[i+1]['open']-data[i+1]['close'])>5:
                         count += 1
                         print ''
                         print 'No.', count

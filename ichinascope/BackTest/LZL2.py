@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 # 立庄量
+# 参考000014 2016-07-26
+# 前期先缩量 再放量下跌 说明已有散户割肉 再缩量 到地量 可买入
 
 import sys
 reload(sys)
@@ -38,7 +40,7 @@ print(datalist)
 count = 0
 ticklen = len(tick.tick)
 
-#300431 2016-06-13
+
 
 for ticki in tick.tick:
     for i in range(0,span):
@@ -46,17 +48,15 @@ for ticki in tick.tick:
             data.append(item)
     if data != []:
         try:
-            for i in range(len(data)-4):
-                # print ''
-                # print data[i]['inc'],data[i+1]['inc']
-                if (data[i+1]['vol']/data[i]['vol'])>2.5:
-                    if data[i + 4]['high'] > data[i + 3]['high'] > data[i + 2]['high']:
-                        if data[i + 4]['low'] > data[i + 3]['low'] > data[i + 2]['low']:
+            for i in range(len(data)-5):
+                if data[i]['vol']>data[i+1]['vol'] and (data[i+2]['vol']/data[i+1]['vol'])>2.5:
+                    if data[i + 5]['high'] > data[i + 4]['high'] > data[i + 3]['high']:
+                        if data[i + 5]['low'] > data[i + 4]['low'] > data[i + 3]['low']:
                             count += 1
                             print ''
                             print 'No.', count
-                            print 'turnover:', data[i+1]['turnover']
-                            print data[i+1]['tick'],data[i+1]['dt']
+                            print 'turnover:', data[i+2]['turnover']
+                            print data[i]['tick'],data[i]['dt']
                             print ('----------------')
         except:pass
     del data[:]
